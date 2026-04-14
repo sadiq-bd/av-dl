@@ -1,14 +1,13 @@
 <?php
 
-$ytdlp = exec('yt-dlp --version', $ytOut, $ytStatus);
-if ($ytStatus !== 0) {
-    echo 'Error: yt-dlp not installed';
-    exit;
-}
+if (!file_exists(__DIR__ . '/config.php')) {
+	echo 'Error: Configuration file doesn\'t exist. create one based on the example file.' . PHP_EOL;
 
-$ffmpeg = exec('ffmpeg -version', $ffmpegOut, $ffmpegStatus);
-if ($ffmpegStatus !== 0) {
-    echo 'Error: ffmpeg not installed';
-    exit;
-}
+	$ytdlp = exec('yt-dlp --version && ffmpeg -version', $ytOut, $ytStatus);
+	if ($ytStatus !== 0) {
+		echo 'Error: yt-dlp and ffmpeg are required' . PHP_EOL;
 
+	}
+
+	exit;
+}
