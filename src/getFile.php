@@ -9,7 +9,7 @@ if (empty($_GET['file'])) {
 
 $file = rtrim(CONFIG['downloadDir'], '/') . '/' . basename($_GET['file']);
 
-if (!file_exists($file) && is_dir($file)) {
+if (!is_file($file)) {
 	http_response_code(404);
 	exit;
 }
