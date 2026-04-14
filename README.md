@@ -1,3 +1,5 @@
+<p align="left"> <img src="https://api.sadiq.workers.dev/app/github/repo/av-dl/views" alt="" /> </p>
+
 # AV-DL
 
 A lightweight, self-hosted web application for downloading videos and audio from any streaming site supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp). Built with PHP — no frameworks, no dependencies, just a clean dark UI and a server that does the heavy lifting.
