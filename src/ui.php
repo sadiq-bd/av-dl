@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download videoes from any streaming site</title>
+    <title>Download videos from any streaming site</title>
     <style>
         * {
             background-color: #222;
@@ -147,7 +147,7 @@
                         }, 100);
                         break;
                     case 'download_url':
-                        if (!resp.data.match(/\?file=$/)) {
+                        if (!resp.data.match(/\?file=(\&keep=true)?$/)) {
                             window.location = resp.data;
                         }
                         break;
