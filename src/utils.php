@@ -29,19 +29,19 @@ function getRoute()
 
 function genYtMp4Cmd(string $url, int $height = 0)
 {
-	$config = CONFIG['ytDlpOpts'] ? ' ' . CONFIG['ytDlpOpts'] . ' ' : '';
+	$config = CONFIG['ytDlpOpts'] ? ' ' . CONFIG['ytDlpOpts'] : '';
 	$url = escapeshellarg($url);
 	$ql1 = $height ? "[height=$height]" : '';
 	$ql2 = $height ? "[height<=$height]" : '';
-	return "yt-dlp -f \"bestvideo{$ql1}[vcodec^=avc1][ext=mp4]+bestaudio[ext=m4a]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best{$ql2}\"{$config}--merge-output-format mp4 $url";
+	return "yt-dlp -f \"bestvideo{$ql1}[vcodec^=avc1][ext=mp4]+bestaudio[ext=m4a]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best{$ql2}\"{$config} --merge-output-format mp4 $url";
 }
 
 
 function genYtMp3Cmd(string $url)
 {
-	$config = CONFIG['ytDlpOpts'] ? ' ' . CONFIG['ytDlpOpts'] . ' ' : '';
+	$config = CONFIG['ytDlpOpts'] ? ' ' . CONFIG['ytDlpOpts'] : '';
 	$url = escapeshellarg($url);
-	return "yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail{$config}--embed-metadata $url";
+	return "yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail{$config} --embed-metadata $url";
 }
 
 function grabFileName(string $pipeline)
