@@ -17,6 +17,10 @@ if (empty($allHeaders['authorization'])) {
 
 $authenticated = false;
 
+if (count(CONFIG['basicAuth']) < 1) {
+	$authenticated = true;
+}
+
 foreach (CONFIG['basicAuth'] as $key => $val) {
 	$auth = explode(' ', $allHeaders['authorization'], 2)[1];
 	if ($auth && $auth === base64_encode($key . ':' . $val)) {

@@ -7,7 +7,7 @@ A lightweight, self-hosted web application for downloading videos and audio from
 ## ✨ Features
 
 - **Universal Download** — Supports all [1800+ sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) that yt-dlp supports (YouTube, Vimeo, Twitter, etc.)
-- **Video & Audio** — Download as MP4 (video) or MP3 (audio) with selectable quality (144p–1080p)
+- **Video & Audio** — Download as MP4 (video) or MP3 (audio) with selectable quality (144p–2160p)
 - **Real-Time Progress** — Live download progress streamed to the browser via Server-Sent Events (SSE)
 - **Flexible Download Modes**
   - **Direct download** — File is piped straight to your browser
@@ -18,6 +18,21 @@ A lightweight, self-hosted web application for downloading videos and audio from
 - **Preferences Persistence** — Remembers your last-used quality, format, and mode via `localStorage`
 - **Zero Dependencies** — Pure PHP, vanilla HTML/CSS/JS — no Composer, no npm, no build step
 
+
+## 🚀 Installation (Recommended)
+
+```bash
+docker run -p 7878:8080 \
+    -v "/home/$USERNAME/Downloads:/data" \
+    -e AVDL_AUTH="username:password" \
+    -d sadiqbddev/av-dl
+```
+
+Web Interface: http://127.0.0.1:7878
+
+## 🚀 Installation (Manual)
+
+
 ## 📋 Prerequisites
 
 | Dependency | Purpose |
@@ -27,8 +42,6 @@ A lightweight, self-hosted web application for downloading videos and audio from
 | **ffmpeg** | Audio extraction & format merging |
 
 The app checks for `yt-dlp` and `ffmpeg` on startup and will display an error if either is missing.
-
-## 🚀 Installation
 
 ### 1. Clone the repository
 
@@ -51,25 +64,15 @@ sudo pacman -S php ffmpeg yt-dlp
 
 ### 3. Configure
 
-```bash
-cp src/example.config.php src/config.php
-```
-
-Edit `src/config.php`:
-
 ```php
-<?php
+export AVDL_DOWNLOAD_DIR=/home/user/Downloads
 
-$config = (object) [
-    'downloadDir' => '/path/to/downloads',   // must be writable by the web server
-    'basicAuth' => [
-        'username' => 'your-password'         // add as many users as needed
-    ]
-];
+# set authentication
+export AVDL_AUTH="username:password"
 ```
 
 > [!IMPORTANT]
-> The `downloadDir` must exist and be writable by the web server process (e.g. `www-data`).
+> The `AVDL_DOWNLOAD_DIR` must exist and be writable by the web server process (e.g. `www-data`).
 
 ### 4. Set up a web server
 
